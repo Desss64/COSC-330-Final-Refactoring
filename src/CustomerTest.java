@@ -11,7 +11,7 @@ public class CustomerTest {
     private final Customer customer = new Customer("Tom");
 
     @Test
-    public void basicChildrenRental() {
+    public void childrenRental() {
         customer.addRental(new Rental(THE_GRINCH, 2));
         assertEquals(customer.statement(), expectedMessageFor("The Grinch", 1.5, 1.5, 1));
     }
@@ -23,7 +23,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void basicNewReleaseRental() {
+    public void newReleaseRental() {
         customer.addRental(new Rental(BLACK_PANTHER, 1));
         assertEquals(customer.statement(), expectedMessageFor("Black Panther: Wakanda Forever", 3.0, 3.0, 1));
     }
@@ -31,11 +31,11 @@ public class CustomerTest {
     @Test
     public void shouldNotDiscountNewReleaseRentalsButBonusFrequentRenterPoints() {
         customer.addRental(new Rental(BLACK_PANTHER, 4));
-        assertEquals(customer.statement(), expectedMessageFor("Black Panther: Wakanda Forever", 12.0, 12.0, 2));
+        assertEquals(customer.statement(), expectedMessageFor("Black Panther: Wakanda Forever", 12.0, 12.0, 2)); 
     }
 
     @Test
-    public void basicRegularRental() {
+    public void regularRental() {
         customer.addRental(new Rental(SPIDER_MAN, 2));
         assertEquals(customer.statement(), expectedMessageFor("Spiderman", 2.0, 2.0, 1));
     }
@@ -43,7 +43,7 @@ public class CustomerTest {
     @Test
     public void shouldDiscountRegularRental() {
         customer.addRental(new Rental(SPIDER_MAN, 4));
-        assertEquals(customer.statement(), expectedMessageFor("Spiderman", 5.0, 5.0, 1));
+        assertEquals(customer.statement(), expectedMessageFor("Spiderman", 5.0, 5.0, 1));   
     }
 
     @Test
@@ -53,7 +53,7 @@ public class CustomerTest {
         customer.addRental(new Rental(BLACK_PANTHER, 3));
         assertEquals(customer.statement(), "Rental record for Tom\n\tThe Grinch\t1.5\n\tSpiderman\t2.0\n\tBlack Panther: Wakanda Forever\t9.0\nAmount owed is 12.5\nYou earned 4 frequent renter points");
     }
-
+    
     private static String expectedMessageFor(String rental, double price, double total, int renterPointsEarned) {
         return "Rental record for Tom\n\t" + rental + "\t" + price + "\nAmount owed is " + total + "\nYou earned " + renterPointsEarned + " frequent renter points";
     }
