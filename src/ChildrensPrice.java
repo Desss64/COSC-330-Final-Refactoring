@@ -1,3 +1,4 @@
+
 public class ChildrensPrice extends Price {
 
     @Override
