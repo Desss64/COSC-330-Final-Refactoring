@@ -1,4 +1,3 @@
-
 public class RegularPrice extends Price {
 
     @Override
